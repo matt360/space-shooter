@@ -48,9 +48,18 @@ public class GameController : MonoBehaviour {
 			for (int i = 0; i < hazardCount; i++) 
 			{
 				GameObject hazard = hazards[Random.Range(0, hazards.Length)];
+				//comments: idea for ships coming from the bottom 
+				/* bool flag = (Random.value > 0.5f);
+				 if (flag) 
+				 {
+					  spawnValue.z (16 or -16)
+				 }
+				*/ 
 				Vector3 spawnPosition = new Vector3 (Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
 				Quaternion spawnRotation = Quaternion.identity;
 				Instantiate (hazard, spawnPosition, spawnRotation);
+				//GameObject clone = Instantiate (hazard, spawnPosition, spawnRotation);
+				//ReverseDirection(clone);
 				yield return new WaitForSeconds (spawnWait);
 			}
 			yield return new WaitForSeconds(waveWait);
@@ -64,6 +73,12 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
+	/*void ReverseDirection ()
+	 * {
+	 * 		clone.transform.rotation.y = 0;
+	 * 		clone.GetComponent<Mover>().speed = 5;
+	 * }
+	 */
 	public void AddScore(int newScoreValue)
 	{
 		score += newScoreValue;
